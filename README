@@ -9,73 +9,7 @@ Any ideas to improve this project are welcome.
 
 "Simplicity is the ultimate sophistication" - Leonardo da Vinci
 
-
-How to add and run a test case?
-i) To add a test case, create a file with ".test" extension.
-
-ii) Every file can contain as many number of test cases as you want.
-
-iii) The format of the file is an array of JSON objects, where each
-
-iv) The first object of the array is reserved for config ( wow! config and simplicty does not sound good - just not to make things simple, you can just leave it empty but you will later see this object makes things more simple)
-
-v) All other objects in the array represents a test case and they are executed sequentially.
-
-vi) An object must contain two parameter "request-url" and "response" where the "request-url" represents the end point to be tested. And "response" represents the expected response.
-
-vii) To run the test cases execute tester.py :
-Note: if no parameters are passed to tester.py it tries to execute all .test files (in order of their names) in the current directory
-if a directory path is given as a parameter, all the test files in the directory are executed in the order of their names
-if a path to test file is given as a parameter the test cases in that file are executed
-it ignore any extra parameters passed!
-
-viii) Wait, i cannot always have an exact expected response?
-Cool, You do not have to write a complex regular expression to match your response just use a "message-filler" in the parts of response that you do not know what the exact value will be.
-Example:
-If the response is (say app-id in the following response is generated randomly):
-<status>APP CREATED</success>
-<app-id>101</app-id>
-
-Then your test case object as follows:
-{
-'request-url': 'http://myapi.com/endpoint',
-'request-data': { 'param1':'value1','param2':'value2'},
-'response':'<status>APP CREATED</status>\n<app-id>####</app-id>'
-}
-
-"####" is the default "message-filler", you can define your own "message-filler" text pattern by defining that parameter in the test case object.
-
-
-ix) Oh! i can't define a multiline 'response' ?
-Since the .test file has to be a valid JSON file it has to be in one line, you need to replace line breaks with '\n' and define your response.
-But wait, if you are really not bothered about white spaces like new line, tabs, spaces etc you need not have to escape line breaks or type in exact number of spaces and tabs you just need to "ignore-whitespaces".
-Yes, just add a parameter "ignore-whitespace" and set its value to 'true' in the particular test case and All the white spaces, line breaks will be ignored while comparing the result. By default this parameter value is 'false'
-
-
-x) But, does this make a GET or POST call to my api?
-By default it is a GET call, but if you want to change it you can set "request-method" parameter of the particular test case to 'get' or 'post' as needed.
-
-xi) Did you say i have to define "message-filler", "ignore-whitespace", "request-method"  in every test case object i want to configure , i cant type it every time ?  
-No need to, thats why we have our first object in the test case!
-treat this object as global space which is shared by all test cases. Any parameter you define is default for all the test cases unless you override by defining it in the test case again.
-Any parameter defined with in a test case object has its effect only within the test case.
-
-Note: This object is used for other purposes internally, so better not define your own parameters unless you go through the source and make sure that will not conflict any where. (ya, just grep for the parameter name, if you dont find it you are good to add the parameter)
-
-Didn't i say this object will make things more simple?
-
-xii) What if i want to use a value of a response returned by one of the test case as a value of one of the parameter of 'request-data'?
-Of course you can!
-Since you provide the expected response you will know the data in response, except the part matched by "message-filler"
-
-You can access the value stored in a message filler by {$n} format. where n is any number and it represent's the string matched by n'th occurence of 'message-filler'
-
-xiii) What else?
-You can define 'name' for each test case so that it is easy to read test results!
-Also since you can define any parameters - you can document it well with 'comments'
-
-xiv) What next?
-I am planning to add a web ui to this and even before that add more feature to the utility, one on top of my mind right now is to add a feature to actually subject the strings matched by 'message-filler' to a regex pattern if required ( Did i say regex is complex, its powerful and i love it!)
+To understand how this works and how simple it is to use please read the [wiki](https://github.com/manuskc/API_Tester/wiki/How-to-use-API-Tester)
 
 Let me know your thought and feed back when you use this.
 
