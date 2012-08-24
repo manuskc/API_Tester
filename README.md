@@ -7,7 +7,7 @@ Adding a test case is as simple as writing a small json object in a file. An ave
 
 Any ideas to improve this project are welcome.
 
-"Simplicity is the ultimate sophistication" - Leonardo da Vinci
+`"Simplicity is the ultimate sophistication" - Leonardo da Vinci`
 
 To understand how this works and how simple it is to use please read the [wiki](https://github.com/manuskc/API_Tester/wiki/How-to-use-API-Tester)
 
