@@ -2,8 +2,8 @@ Hi,
 
 This is a testing utility to test any REST based api or basically any web end point.
 
-The main theme behind this project is to make the process of writing and maintaining a tests simpler than simplest.
-Adding a test case is as simple as wrinting a small json object in a file. An average test case does not take more than 4 lines.
+The main theme behind this project is to make the process of writing and maintaining  tests simpler than simplest.
+Adding a test case is as simple as writing a small json object in a file. An average test case does not take more than 4 lines.
 
 Any ideas to improve this project are welcome.
 
