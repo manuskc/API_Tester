@@ -96,6 +96,7 @@ def get_test_name(test_index,test_data,file_name):
 
 def check_test_result(test_name, test_index, response, test_data):
 	global test_passed, test_failed
+	author = get_author_name(test_index,test_data)
 	if response is None:
 		print blue(test_name+" ("+str(test_index)+")") + fail(": Test failed ") + ("" if len(author) == 0 else blue(" contact test author: "+author+""))
 		print "response is None"
@@ -104,7 +105,7 @@ def check_test_result(test_name, test_index, response, test_data):
 
 	if response.status_code != 200:
 		print blue(test_name+" ("+str(test_index)+")") + fail(": Test failed ") + ("" if len(author) == 0 else blue(" contact test author: "+author+""))
-		print "HTTP status code = "+response.status_code
+		print "HTTP status code = "+ str(response.status_code)
 		test_failed += 1
 		return
 
@@ -116,7 +117,6 @@ def check_test_result(test_name, test_index, response, test_data):
 		print blue(test_name+" ("+str(test_index)+")") + green(": Test passed")
 		test_passed += 1
 	else:
-		author = get_author_name(test_index,test_data)
 		print blue(test_name+" ("+str(test_index)+")") + fail(": Test failed ") + ("" if len(author) == 0 else blue(" contact test author: "+author+""))
 		print warn("EXPECTED")+": \n"+ expected_response + "\n\n"+warn("ACTUAL")+":\n" + response.text
 		test_failed += 1
